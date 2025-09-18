@@ -1,0 +1,63 @@
+#navbar {
+  background: #333;
+  padding: 0;
+}
+#navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+#navbar li {
+  position: relative; /* 讓 dropdown-menu 絕對定位 */
+}
+#navbar a {
+  display: block;
+  padding: 14px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+#navbar a:hover {
+  background: #0077cc;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #444;
+  min-width: 160px;
+  border-radius: 4px;
+ 
+  visibility: hidden;  /* 隱藏 */
+  opacity: 0;
+  transform: translateY(-10px); /* 上移一點，效果更順滑 */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.dropdown-menu li a {
+  padding: 12px 16px;
+  color: white;
+  display: block;
+}
+.dropdown-menu li a:hover {
+  background: #0077cc;
+}
+
+/* 當滑鼠 hover 父元素時顯示 */
+.dropdown:hover .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h1{
+  width: 500px;
+  height: 50px;
+  border: solid black 2px;
+  text-align: center;
+  box-shadow: 20px 20px 5px 12px grey;
+}
