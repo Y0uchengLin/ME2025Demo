@@ -8,3 +8,6 @@ for (let op of ops) {
   document.write('<button onclick="press(\'' + op + '\')">' + op + '</button>');
 }
 document.write("<br>");
+document.write('<button onclick="calculate()">=</button>');
+document.write('<button onclick="clearScreen()">clear</button>');
+
