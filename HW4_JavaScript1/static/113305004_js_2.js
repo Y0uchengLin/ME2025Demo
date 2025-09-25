@@ -3,3 +3,8 @@ for (let i = 0; i <= 9; i++) {
   document.write('<button onclick="press(' + i + ')">' + i + '</button>');
   if (i === 4 || i === 9) document.write("<br>");
 }
+let ops = ["+", "-", "*", "/","(",")"];
+for (let op of ops) {
+  document.write('<button onclick="press(\'' + op + '\')">' + op + '</button>');
+}
+document.write("<br>");
