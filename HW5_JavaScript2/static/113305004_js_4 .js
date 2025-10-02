@@ -2,13 +2,12 @@ window.onload = function () {
     let checkAll = document.getElementById("check_all");
     let checkItems = document.querySelectorAll(".check_item");
 
-    // 全選 checkbox
     checkAll.addEventListener("change", function () {
         checkItems.forEach(c => c.checked = checkAll.checked);
         calcTotal();
     });
 
-    // 單個 checkbox
+
     checkItems.forEach(c => {
         c.addEventListener("change", function () {
             let allChecked = Array.from(checkItems).every(c => c.checked);
@@ -17,7 +16,6 @@ window.onload = function () {
         });
     });
 
-    // 綁定加減按鈕
     let plusBtns = document.querySelectorAll(".plus");
     let minusBtns = document.querySelectorAll(".minus");
 
@@ -51,16 +49,35 @@ window.onload = function () {
             }
         });
     });
+    let qtyInputs = document.querySelectorAll(".qty");
+    qtyInputs.forEach(input => {
+        input.addEventListener("blur", function () {
+            let row = this.closest("tr");
+            let stock = parseInt(row.querySelector(".stock").textContent.replace(/[^0-9]/g, ''));
+            let qty = parseInt(this.value);
+
+            // 驗證數字
+            if (isNaN(qty) || qty < 1) {
+                qty = 1;
+            } else if (qty > stock) {
+                qty = stock;
+            }
+
+            this.value = qty;
+            updateSubtotal(row);
+            calcTotal();
+        });
+    });
 };
 
-// 更新單列小計
+
+
 function updateSubtotal(row) {
     let price = parseInt(row.querySelector(".price").textContent);
     let qty = parseInt(row.querySelector(".qty").value);
     row.querySelector(".subtotal").textContent = price * qty;
 }
 
-// 計算總金額
 function calcTotal() {
     let rows = document.querySelectorAll("tbody tr");
     let total = 0;
