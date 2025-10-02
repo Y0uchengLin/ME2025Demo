@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>購物車 Step1</title>
+  <link rel="stylesheet" href="../static/113305004_js_4.css">
+  <script src="../static/113305004_js_4 .js" defer></script>
+</head>
+<body>
+  <h1>購物車</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th><input type="checkbox" id="check_all"> 全選</th>
+        <th>商品</th>
+        <th>價格</th>
+        <th>數量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" class="check_item"></td>
+        <td>
+            <img src="../static/img/apple_158989157.jpg" height="50px">
+        </td>
+        <td class="price">100</td>
+        <td>
+          <button class="minus">-</button>
+          <input type="text" class="qty" value="1" size="3">
+          <button class="plus">+</button>
+          <span class="stock">(庫存：5)</span>
+        </td>
+        <td class="subtotal">100</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="check_item"></td>
+        <td>
+            <img src="../static/img/images.jpg" height="50px">
+        </td>
+        <td class="price">200</td>
+        <td>
+          <button class="minus">-</button>
+          <input type="text" class="qty" value="1" size="3">
+          <button class="plus">+</button>
+          <span class="stock">(庫存：3)</span>
+        </td>
+        <td class="subtotal">200</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>總金額：<span id="total">0</span></h2>
+  <button id="checkout">結帳</button>
+</body>
+</html>
