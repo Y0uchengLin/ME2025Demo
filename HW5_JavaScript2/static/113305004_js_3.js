@@ -1,12 +1,28 @@
 var ans = Math.floor(Math.random() * 101);
 var guesstime = 1;
 var startTime = null;
+var timer = null;
+var seconds = 0;
+
+function startTimer() {
+    if (timer) return;
+    timer = setInterval(function() {
+        seconds++;
+        document.getElementById("timer").textContent = "計時：" + seconds + " 秒";
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timer);
+    timer = null;
+}
 
 function guess() {
     let inp = parseInt(document.getElementById("input_1").value);
 
-    if (guesstime === 1) {
+    if (guesstime === 1 && !timer) {
         startTime = new Date();
+        startTimer();
     }
 
     if (inp > ans) {
@@ -18,12 +34,20 @@ function guess() {
         guesstime++;
     }
     else {
-        let endTime = new Date();
-        let diffSec = Math.floor((endTime - startTime) / 1000);
-        alert("恭喜猜對，共猜了 " + guesstime + " 次，耗時 " + diffSec + " 秒");
+        stopTimer();
+        let totalTime = seconds;
+        alert("恭喜猜對，共猜了 " + guesstime + " 次，耗時 " + totalTime + " 秒");
+
+        let record = document.createElement("div");
+        record.textContent = "次數：" + guesstime +
+                             "，耗時：" + totalTime + " 秒" +
+                             "，完成時間：" + new Date().toLocaleTimeString();
+        document.getElementById("records").appendChild(record);
 
         guesstime = 1;
         ans = Math.floor(Math.random() * 101);
-        document.getElementById("message").textContent = "新遊戲開始！請輸入數字";
+        seconds = 0;
+        document.getElementById("timer").textContent = "計時：0 秒";
+        document.getElementById("message").textContent = "新遊戲開始！";
     }
 }
