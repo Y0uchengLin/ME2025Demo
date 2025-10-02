@@ -10,11 +10,11 @@ function guess() {
     }
 
     if (inp > ans) {
-        alert("太大了，再試一次");
+        document.getElementById("message").textContent = "太大了，再試一次";
         guesstime++;
     }
     else if (inp < ans) {
-        alert("太小了，再試一次");
+        document.getElementById("message").textContent = "太小了，再試一次";
         guesstime++;
     }
     else {
@@ -24,5 +24,6 @@ function guess() {
 
         guesstime = 1;
         ans = Math.floor(Math.random() * 101);
+        document.getElementById("message").textContent = "新遊戲開始！請輸入數字";
     }
 }
