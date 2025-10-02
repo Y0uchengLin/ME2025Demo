@@ -7,7 +7,6 @@ window.onload = function () {
         calcTotal();
     });
 
-
     checkItems.forEach(c => {
         c.addEventListener("change", function () {
             let allChecked = Array.from(checkItems).every(c => c.checked);
@@ -49,6 +48,7 @@ window.onload = function () {
             }
         });
     });
+   
     let qtyInputs = document.querySelectorAll(".qty");
     qtyInputs.forEach(input => {
         input.addEventListener("blur", function () {
@@ -56,7 +56,6 @@ window.onload = function () {
             let stock = parseInt(row.querySelector(".stock").textContent.replace(/[^0-9]/g, ''));
             let qty = parseInt(this.value);
 
-            // 驗證數字
             if (isNaN(qty) || qty < 1) {
                 qty = 1;
             } else if (qty > stock) {
@@ -68,8 +67,8 @@ window.onload = function () {
             calcTotal();
         });
     });
+    document.getElementById("checkout").addEventListener("click", checkout);
 };
-
 
 
 function updateSubtotal(row) {
@@ -89,4 +88,52 @@ function calcTotal() {
         }
     });
     document.getElementById("total").textContent = total;
+}
+function checkout() {
+    let rows = document.querySelectorAll("tbody tr");
+    let total = parseInt(document.getElementById("total").textContent);
+
+    if (total <= 0) {
+        return; 
+    }
+
+    let details = "結帳明細：\n";
+    rows.forEach(row => {
+        let checkbox = row.querySelector(".check_item");
+        if (checkbox.checked) {
+            let name = row.cells[1].textContent;
+            let price = parseInt(row.querySelector(".price").textContent);
+            let qty = parseInt(row.querySelector(".qty").value);
+            details += name + " x " + qty + " = " + (price * qty) + "\n";
+        }
+    });
+    details += "總金額：" + total;
+    alert(details);
+
+    rows.forEach(row => {
+        let checkbox = row.querySelector(".check_item");
+        if (checkbox.checked) {
+            let stockSpan = row.querySelector(".stock");
+            let stock = parseInt(stockSpan.textContent.replace(/[^0-9]/g, ''));
+            let qty = parseInt(row.querySelector(".qty").value);
+
+            stock -= qty;
+            if (stock < 0) stock = 0;
+            stockSpan.textContent = "(庫存：" + stock + ")";
+
+            let qtyInput = row.querySelector(".qty");
+            if (stock > 0) {
+                qtyInput.value = 1;
+            } else {
+                qtyInput.value = 0;
+            }
+            updateSubtotal(row);
+        }
+
+        checkbox.checked = false;
+    });
+
+    document.getElementById("check_all").checked = false;
+
+    calcTotal();
 }

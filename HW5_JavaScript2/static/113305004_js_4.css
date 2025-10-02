@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #333;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+.qty {
+    width: 40px;
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.stock {
+    margin-left: 5px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+#total {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+#checkout {
+    padding: 8px 20px;
+    background-color: #5cb85c;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#checkout:hover {
+    background-color: #4cae4c;
+}
